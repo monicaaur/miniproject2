@@ -16,7 +16,7 @@ function Home() {
     const animationTitle = "Animation";
     const animationRouter = "/animation";
 
-    const animeIds = [912598, 810693, 683127, 635302, 568160, 604605];
+    const animeIds = [912598, 810693, 683127, 283566, 635302, 568160];
     const animeTitle = "Japanese Anime";
     const animeRouter = "/jp-anime";
 

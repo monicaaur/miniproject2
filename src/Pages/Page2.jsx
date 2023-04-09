@@ -13,15 +13,18 @@ function Page2(props) {
             
             const movieTrailer = Axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=d16f4dafe652594029c33c9a44e3462f`)
 
-            return Promise.all([movieDetails, movieTrailer])
+            const landscapePoster = Axios.get(`https://api.themoviedb.org/3/movie/${id}/images?api_key=d16f4dafe652594029c33c9a44e3462f&include_image_language=en`)
+
+            return Promise.all([movieDetails, movieTrailer, landscapePoster])
 
         })
 
         Promise.all(requests)
         .then((responses) => {
-        setMovieData(responses.map(([movieDetails, movieTrailer]) => {
+        setMovieData(responses.map(([movieDetails, movieTrailer, landscapePoster]) => {
             const movie = movieDetails.data
             movie.trailer = movieTrailer.data.results.filter((video) => video.type === "Trailer")[0]
+            movie.landscape = landscapePoster.data.backdrops[0]
             return movie
         }))
         });  
@@ -45,10 +48,10 @@ function Page2(props) {
 
                 <Row>
                     {movieData.map((movie, i) => ( 
-                        <><Col lg="2" md="4" sm="6" key={i}>
+                        <><Col lg="3" md="4" sm="6" key={i}>
                             <Card className="pg2_card_border">
                                 <a className='movie_modal' onClick={() => handleShow(movie.id)}>
-                                    <Card.Img src={`https://www.themoviedb.org/t/p/original${movie.poster_path}`} class="card-img-top rounded-3" alt={movie.title}/>
+                                    <Card.Img src={`https://www.themoviedb.org/t/p/original${movie.landscape.file_path}`} className="card-img-top rounded-3" alt={movie.title}/>
                                     <Card.Body>
                                         <Card.Title>{movie.title}</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">Popularity: {movie.popularity}</Card.Subtitle>
@@ -58,7 +61,7 @@ function Page2(props) {
                         </Col>
 
                         <Modal show={show === movie.id} onHide={() => handleClose()}>
-                        <div class="close-wrap">
+                        <div className="close-wrap">
                             <CloseButton variant="white" aria-label="Close" onClick={() => handleClose()}/>
                         </div>
                         <Modal.Body style={{padding: "5px 0 0", marginBottom: "-5px"}}>
@@ -76,7 +79,7 @@ function Page2(props) {
                                 <div className="modal_button_wrap">
                                     <div style={{paddingRight: "5px"}}>
                                         <Button type="button" variant='danger' className="btn-watch">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="white" class="bi bi-play-fill" viewBox="0 0 16 16">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="white" className="bi bi-play-fill" viewBox="0 0 16 16">
                                                 <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                                             </svg>Watch Now</Button>
                                     </div>

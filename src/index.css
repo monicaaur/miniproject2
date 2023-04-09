@@ -370,12 +370,12 @@ img.poster {
 .pg2_card_border {
   border: none;
   background-color: transparent;
-  padding-top: 30px;
+  padding-top: 13px;
 }
 
 .page2_title {
   color: white;
-  margin-bottom: -20px;
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 991px) {
@@ -418,6 +418,15 @@ img.poster {
 
   .more_button {
       margin-top: -25px;
+  }
+
+  /* Page2 Content */
+  .pg2_card_border {
+    padding-top: 0;
+  }
+
+  .page2_title {
+    margin-bottom: 15px;
   }
 
   /* Footer */
