@@ -2,7 +2,7 @@ import { Container, Nav, Navbar, Button, Form } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import './index.css'
 
-function App() {        
+function Navibar() {        
   const location = useLocation();
 
   return (
@@ -36,4 +36,4 @@ function App() {
   )
 }
 
-export default App
+export default Navibar

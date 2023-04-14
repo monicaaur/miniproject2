@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import Navibar from './Navibar'
 import Footer from './Footer'
 import Home from './Pages/Home'
 import NewArrival from './Pages/New-Arrival'
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <>
-      <App />
+      <Navibar />
       <Outlet />
       <Footer />
     </>,
