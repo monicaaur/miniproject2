@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
+import Axios from 'axios'
 import { Container, Row, Col, Card, Modal, Button, Collapse, CloseButton } from "react-bootstrap"
-import Axios from 'axios';
-import '../index.css'
+import "../../index.css";
+import "./Content.css"
 
-function Page2(props) {
+function MovieContent() {
   const [movieData, setMovieData] = useState([])
     
-  const getMovieData = () => {
-    const ids = props.ids;
-    const requests = ids.map((id) => {
-      const movieDetails = Axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=d16f4dafe652594029c33c9a44e3462f`)
-      
-      const movieTrailer = Axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=d16f4dafe652594029c33c9a44e3462f`)
+  const getMovieData = async () => {
+    await Axios.get("https://api.themoviedb.org/3/trending/movie/week?api_key=d16f4dafe652594029c33c9a44e3462f")
 
-      const landscapePoster = Axios.get(`https://api.themoviedb.org/3/movie/${id}/images?api_key=d16f4dafe652594029c33c9a44e3462f&include_image_language=en`)
+    .then((trending) => {
+      const requests = trending.data.results.slice(0, 18).map(async (movie) => {
+        const movieDetails = await Axios.get(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=d16f4dafe652594029c33c9a44e3462f`)
+              
+        const movieTrailer = await Axios.get(`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=d16f4dafe652594029c33c9a44e3462f`)
 
-      return Promise.all([movieDetails, movieTrailer, landscapePoster])
+        return Promise.all([movieDetails, movieTrailer])
+      })
 
+      Promise.all(requests)
+      .then((responses) => {
+      setMovieData(responses.map(([movieDetails, movieTrailer]) => {
+        const movie = movieDetails.data
+        movie.trailer = movieTrailer.data.results.filter((video) => video.type === "Trailer")[0]
+        return movie;
+      }))
+      });  
     })
-
-    Promise.all(requests)
-    .then((responses) => {
-    setMovieData(responses.map(([movieDetails, movieTrailer, landscapePoster]) => {
-      const movie = movieDetails.data
-      movie.trailer = movieTrailer.data.results.filter((video) => video.type === "Trailer")[0]
-      movie.landscape = landscapePoster.data.backdrops[0]
-      return movie
-    }))
-    });  
   }
 
   useEffect(() => {
@@ -43,25 +43,26 @@ function Page2(props) {
 
   return (
     <div>
-      <Container fluid className='pg2_content_wrapper'>
-        <h2 className="page2_title">{props.title}</h2>
+      <Container fluid className="content_wrapper">
+        <h2 className="content_title">Trending Movies</h2>
 
         <Row>
+          {console.log(movieData)}
           {movieData.map((movie, i) => ( 
-            <><Col lg="3" md="4" sm="6" key={i}>
-                <Card className="pg2_card_border">
-                  <a className='movie_modal' onClick={() => handleShow(movie.id)}>
-                    <Card.Img src={`https://www.themoviedb.org/t/p/original${movie.landscape.file_path}`} className="card-img-top rounded-3" alt={movie.title}/>
-                    <Card.Body>
-                      <Card.Title>{movie.title}</Card.Title>
-                      <Card.Subtitle className="mb-2 text-muted">Popularity: {movie.popularity}</Card.Subtitle>
-                    </Card.Body>
-                  </a>
-                </Card>
+            <><Col lg="2" md="4" sm="6" key={movie.id}>
+              <Card className="card_border">
+                <a className='movie_modal' onClick={() => handleShow(movie.id)}>
+                  <Card.Img src={`https://www.themoviedb.org/t/p/original${movie.poster_path}`} className="card-img-top rounded-3" alt={movie.title}/>
+                  <Card.Body>
+                    <Card.Title>{movie.title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Popularity: {movie.popularity}</Card.Subtitle>
+                  </Card.Body>
+                </a>
+              </Card>
             </Col>
-
+            
             <Modal show={show === movie.id} onHide={() => handleClose()}>
-              <div className="close-wrap">
+              <div class="close-wrap">
                 <CloseButton variant="white" aria-label="Close" onClick={() => handleClose()}/>
               </div>
               <Modal.Body style={{padding: "5px 0 0", marginBottom: "-5px"}}>
@@ -79,7 +80,7 @@ function Page2(props) {
                   <div className="modal_button_wrap">
                     <div style={{paddingRight: "5px"}}>
                       <Button type="button" variant='danger' className="btn-watch">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="white" className="bi bi-play-fill" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="white" class="bi bi-play-fill" viewBox="0 0 16 16">
                         <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>Watch Now
                       </Button>
                     </div>
@@ -102,4 +103,4 @@ function Page2(props) {
   )
 }
 
-export default Page2
+export default MovieContent

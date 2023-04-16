@@ -2,14 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Navibar from './Navibar'
 import Footer from './Footer'
-import Home from './Pages/Home'
-import NewArrival from './Pages/New-Arrival'
-import Movie from './Pages/Movie'
-import Animation from './Pages/Animation'
-import JPAnime from './Pages/JP-Anime'
 import Page404 from './Pages/404Page'
+import SignIn from './Pages/SignIn'
 import './index.css'
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import TrendingTV from './Pages/TrendingTV'
+import TrendingMovie from './Pages/TrendingMovie'
 
 const router = createBrowserRouter([
   {
@@ -23,23 +21,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <TrendingMovie />,
       },
       {
-        path: "/new-arrival",
-        element: <NewArrival />,
+        path: "/TrendingTV",
+        element: <TrendingTV />,
       },
       {
-        path: "/movie",
-        element: <Movie />,
-      },
-      {
-        path: "/animation",
-        element: <Animation />,
-      },
-      {
-        path: "/jp-anime",
-        element: <JPAnime />,
+        path: "/signin",
+        element: <SignIn />,
       }
     ],
   }

@@ -1,0 +1,138 @@
+/* Content */
+.content_wrapper {
+  padding: 50px 50px 70px;
+  background-color: rgb(12, 12, 12);
+}
+
+.content_title {
+  color: white;
+  margin-bottom: -5px;
+}
+
+.card_border {
+  border: none;
+  background-color: transparent;
+  padding-top: 25px;
+}
+
+.movie_modal {
+  text-decoration: none;
+}
+
+.movie_modal:hover > .card-body > .card-title {
+  color: #e6283e;
+}
+
+.card-body {
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card-body > .card-title {
+  color: white;
+  font-size: 16px;
+  padding-top: 5px;
+  text-overflow: ellipsis;
+}
+
+.card-body > .card-subtitle {
+  font-size: 13px;
+  padding: 0;
+}
+
+/* Modal */
+.modal-content {
+  background-color: rgb(12, 12, 12);
+}
+
+.close-wrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  margin-right: 8px;
+  z-index: 99;
+}
+
+.poster-wrap {
+  width: 100%;
+  position: relative;
+  top: -37px;
+}
+
+img.poster {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.poster-title {
+  position: absolute;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(0deg, rgb(12, 12, 12) 5%, rgba(255, 255, 255, 0));
+}
+
+.poster-title h1 {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 0;
+  padding: 0 20px;
+}
+
+.poster-content {
+  padding: 0 20px;
+}
+
+.movie_info {
+  color: #535353;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.overview {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.modal_button_wrap {
+  padding: 20px 0 0 20px;
+  display: flex;
+}
+
+.button-wrap {
+  border-left: 1px solid #535353;
+  padding-right: 10px;
+}
+
+.btn-watch {
+  border-radius: 20px;
+  background-color: #e6283e;
+  border: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+}
+
+.btn-watch:hover {
+  opacity: .95;
+}
+
+.btn-trailer {
+  border-radius: 20px;
+  border-color: #e6283e;
+  color: #e6283e;
+  font-weight: 400;
+}
+
+.btn-trailer:hover {
+  background: none;
+  color: rgba(230, 40, 62, .85);
+}
+
+.modal_button_wrap .btn-trailer:active {
+  background: transparent;
+  color: rgba(230, 40, 62, .85);
+}

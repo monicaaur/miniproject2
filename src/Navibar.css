@@ -1,0 +1,54 @@
+/* Navibar */
+.fixed-top {
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: rgb(12, 12, 12);
+}
+
+.navbar-title {
+  font-family: 'Tilt Warp', cursive;
+  font-size: 30px;
+  color: #e6283e;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(230,40,62, .9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbar-title:hover {
+  color: #e6283e;
+}
+
+.nav-link {
+  color: white;
+  font-size: 16px;
+}
+
+.navbar-nav .nav-link.active {
+  color: #e6283e;
+}
+
+.navbar-nav .nav-link.inactive:hover {
+  color: #e6283e;
+}
+
+.nav-current-page {
+  color: #e6283e;
+}
+
+.nav_signin {
+  margin-left: 10px;
+}
+
+.nav_signin:hover, .nav_username:hover {
+  color: #e6283e;
+}
+
+.nav_username {
+  color: #e6283e;
+  font-size: 18px;
+}

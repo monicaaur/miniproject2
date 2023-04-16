@@ -2,33 +2,36 @@ import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import { Container, Row, Col, Card, Modal, Button, Collapse, CloseButton } from "react-bootstrap"
 import "../../index.css";
+import "./Content.css"
 
-function HomeContent(props) {
-  const [movieData, setMovieData] = useState([])
+function TVContent() {
+  const [tvData, setTVData] = useState([])
     
-  const getMovieData = () => {
-    const ids = props.ids;
-    const requests = ids.map((id) => {
-      const movieDetails = Axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=d16f4dafe652594029c33c9a44e3462f`)
-            
-      const movieTrailer = Axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=d16f4dafe652594029c33c9a44e3462f`)
+  const getTVData = async () => {
+    await Axios.get("https://api.themoviedb.org/3/trending/tv/day?api_key=d16f4dafe652594029c33c9a44e3462f")
 
-      return Promise.all([movieDetails, movieTrailer])
+    .then((trending) => {
+      const requests = trending.data.results.slice(0, 18).map(async (tv) => {
+        const tvDetails = await Axios.get(`https://api.themoviedb.org/3/tv/${tv.id}?api_key=d16f4dafe652594029c33c9a44e3462f`)
+              
+        const tvTrailer = await Axios.get(`https://api.themoviedb.org/3/tv/${tv.id}/videos?api_key=d16f4dafe652594029c33c9a44e3462f`)
 
-    })
+        return Promise.all([tvDetails, tvTrailer])
+      })
 
       Promise.all(requests)
       .then((responses) => {
-      setMovieData(responses.map(([movieDetails, movieTrailer]) => {
-        const movie = movieDetails.data
-        movie.trailer = movieTrailer.data.results.filter((video) => video.type === "Trailer")[0]
-        return movie
-      }))
-    });  
+        setTVData(responses.map(([tvDetails, tvTrailer]) => {
+          const tv = tvDetails.data
+          tv.trailer = tvTrailer.data.results.filter((video) => video.type === "Trailer")[0]
+          return tv;
+        }))
+      });  
+    })
   }
 
   useEffect(() => {
-    getMovieData()
+    getTVData()
   }, [])
 
   const [show, setShow] = useState(false);
@@ -41,36 +44,36 @@ function HomeContent(props) {
   return (
     <div>
       <Container fluid className="content_wrapper">
-        <h2><a className="content_title" href={props.router}>{props.title}</a></h2>
+        <h2 className="content_title">Trending TV Show</h2>
 
         <Row>
-          {movieData.map((movie, i) => ( 
-            <><Col lg="2" md="4" sm="6" key={i}>
+          {tvData.map((tv, i) => ( 
+            <><Col lg="2" md="4" sm="6" key={tv.id}>
               <Card className="card_border">
-                <a className='movie_modal' onClick={() => handleShow(movie.id)}>
-                  <Card.Img src={`https://www.themoviedb.org/t/p/original${movie.poster_path}`} className="card-img-top rounded-3" alt={movie.title}/>
+                <a className='movie_modal' onClick={() => handleShow(tv.id)}>
+                  <Card.Img src={`https://www.themoviedb.org/t/p/original${tv.poster_path}`} className="card-img-top rounded-3" alt={tv.title}/>
                   <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">Popularity: {movie.popularity}</Card.Subtitle>
+                    <Card.Title>{tv.name}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Popularity: {tv.popularity}</Card.Subtitle>
                   </Card.Body>
                 </a>
               </Card>
             </Col>
             
-            <Modal show={show === movie.id} onHide={() => handleClose()}>
+            <Modal show={show === tv.id} onHide={() => handleClose()}>
               <div class="close-wrap">
                 <CloseButton variant="white" aria-label="Close" onClick={() => handleClose()}/>
               </div>
               <Modal.Body style={{padding: "5px 0 0", marginBottom: "-5px"}}>
                 <div className="poster-wrap">
-                  <img className='poster' src={`https://www.themoviedb.org/t/p/original${movie.backdrop_path}`} alt={movie.title}/>
+                  <img className='poster' src={`https://www.themoviedb.org/t/p/original${tv.backdrop_path}`} alt={tv.name}/>
                   <div className="poster-title">
-                    <h1>{movie.title}</h1>
+                    <h1>{tv.name}</h1>
                   </div>
                   <div className="poster-content">
-                    <p className="movie_info">ID: {movie.id} | Release Date: {movie.release_date}</p>
-                    <p className="overview">{movie.overview}</p>
-                    <p className="movie_info mb-0">Popularity: {movie.popularity}</p>
+                    <p className="movie_info">ID: {tv.id} | First Aired Date: {tv.first_air_date}</p>
+                    <p className="overview">{tv.overview}</p>
+                    <p className="movie_info mb-0">Popularity: {tv.popularity}</p>
                   </div>
 
                   <div className="modal_button_wrap">
@@ -86,21 +89,17 @@ function HomeContent(props) {
                   </div>
                     
                   <Collapse in={open} id="trailer-video" style={{padding: "20px 20px 0"}}>
-                    <iframe width="100%" height="260px" src={`https://www.youtube.com/embed/${movie.trailer.key}`} frameborder="0" allowfullscreen></iframe>
+                    <iframe width="100%" height="260px" src={`https://www.youtube.com/embed/${tv.trailer.key}`} frameborder="0" allowfullscreen></iframe>
                   </Collapse>
                 </div>
               </Modal.Body>
             </Modal>
             </>
           ))}
-
-          <div className="more_button">
-            <a href={props.router}>more..</a>
-          </div>
         </Row>
       </Container>
     </div>
   )
 }
 
-export default HomeContent
+export default TVContent

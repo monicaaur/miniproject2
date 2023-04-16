@@ -1,5 +1,6 @@
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import './index.css'
+import './Footer.css'
 
 function Footer() {
   return (

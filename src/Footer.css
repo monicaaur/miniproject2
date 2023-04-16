@@ -1,0 +1,61 @@
+/* Footer */
+.footer_area {
+  padding: 50px 70px 0;
+  background-color: rgba(12, 12, 12, .95);
+}
+
+.feedback_title {
+  font-weight: 600;
+  color: #e6283e;
+  margin-bottom: 15px;
+}
+
+.form_height {
+  height: 35px;
+}
+
+.btn_send {
+  width: 70px;
+  text-align: center;
+  border-radius: 10px;
+  background: #e6283e;
+  border: none;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.btn_send:hover {
+  opacity: .95;
+}
+
+.footer_title {
+  font-weight: 600;
+  color: #e6283e;
+  margin-bottom: 10px;
+}
+
+.further_info {
+  font-size: 17px;
+  color: white;
+  padding-left: 1px;
+}
+
+.further_info li {
+  margin-bottom: 5px;
+}
+
+.socmed_icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid white;
+  margin: 0 5px;
+}
+
+.copyright {
+  color: white;
+  font-weight: 400;
+  font-size: 18px;
+  padding-top: 50px;
+}
