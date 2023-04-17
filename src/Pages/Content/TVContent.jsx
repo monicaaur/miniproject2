@@ -35,16 +35,17 @@ function TVContent() {
     getTVData()
   }, [])
 
-  const searchMovie = async () => {
+  const searchTVShow = async () => {
     await Axios.get(`https://api.themoviedb.org/3/search/tv?api_key=d16f4dafe652594029c33c9a44e3462f&query=${query}`)
     .then((response) => {
-      setMovieData(response.data.results);
+      console.log(response.data.results);
+      setTVData(response.data.results);
     })
 };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    searchMovie();
+    searchTVShow();
   }
 
   const handleChange = (e) => {

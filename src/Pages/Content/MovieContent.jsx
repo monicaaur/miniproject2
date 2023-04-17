@@ -38,6 +38,7 @@ function MovieContent() {
   const searchMovie = async () => {
     await Axios.get(`https://api.themoviedb.org/3/search/movie?api_key=d16f4dafe652594029c33c9a44e3462f&query=${query}`)
     .then((response) => {
+      console.log(response.data.results);
       setMovieData(response.data.results);
     })
 };
