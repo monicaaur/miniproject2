@@ -34,3 +34,21 @@
   height: 37px;
   width: 50%;
 }
+
+@media screen and (max-width: 991px) {
+  .form_style{
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form_style{
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .form_style{
+    width: 100%;
+  }
+}

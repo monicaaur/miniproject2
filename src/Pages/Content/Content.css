@@ -1,6 +1,33 @@
+/* Search Box */
+.search_wrap {
+  position: relative;
+  width: 85%;
+  margin: 0 auto 37px;
+}
+
+.search_box {
+  border-radius: 20px;
+  border-color: #e6283e;
+  background-color: rgb(12, 12, 12);
+}
+
+.search_box:focus {
+  background-color: transparent;
+  color:white;
+  border-color: #e6283e;
+}
+
+.btn_search {
+  border: none;
+  color: white;
+  position: absolute;
+  right: 7px;
+  bottom: 3px;
+}
+
 /* Content */
 .content_wrapper {
-  padding: 50px 50px 70px;
+  padding: 43px 50px 70px;
   background-color: rgb(12, 12, 12);
 }
 
@@ -135,4 +162,30 @@ img.poster {
 .modal_button_wrap .btn-trailer:active {
   background: transparent;
   color: rgba(230, 40, 62, .85);
+}
+
+@media screen and (max-width: 425px) {
+  /* Search Box */
+  .search_wrap {
+    width: 100%;
+  }
+
+  /* Modal */
+  .poster-title {
+    height: 230px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  /* Modal */
+  .poster-title {
+    height: 201px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  /* Modal */
+  .poster-title {
+    height: 170px;
+  }
 }

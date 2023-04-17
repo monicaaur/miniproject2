@@ -8,7 +8,7 @@ function TrendingTV() {
   const [tvData, setTVData] = useState([])
 
   const getTVData = async () => {
-    await Axios.get("https://api.themoviedb.org/3/trending/tv/day?api_key=d16f4dafe652594029c33c9a44e3462f")
+    await Axios.get("https://api.themoviedb.org/3/trending/tv/week?api_key=d16f4dafe652594029c33c9a44e3462f")
 
     .then((trending) => {
       const requests = trending.data.results.slice(0, 5).map(async (tv) => {

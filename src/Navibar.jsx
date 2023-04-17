@@ -36,18 +36,18 @@ function Navibar() {
         window.location.assign("/");
       };
       return (
-        <Nav.Link className="nav_signin" onClick={handleSignOut} style={{fontSize: "18px"}}>Sign Out</Nav.Link>
+        <Nav.Link className="nav_signin" onClick={handleSignOut}>Sign Out</Nav.Link>
       );
     }
 
     return (
-      <Nav.Link className="nav_signin" href="/signin" style={{fontSize: "18px"}}>Sign In</Nav.Link>
+      <Nav.Link className={[location.pathname === '/signin' ? 'active' : 'inactive', 'nav_signin']} href="/signin">Sign In</Nav.Link>
     );
   };
 
   const renderUsername = () => {
     return (
-      <li className="nav-link nav_username" style={{fontSize: "18px"}}>{username}</li>
+      <li className="nav-link nav_username">{username}</li>
     );
   };
 
@@ -59,16 +59,9 @@ function Navibar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto mb-2 mb-lg-0">
-              <Nav.Link href="/" className={location.pathname === '/' ? 'active' : 'inactive'} style={{fontSize: "18px"}}>Movie</Nav.Link>
-              <Nav.Link href="/TrendingTV" className={location.pathname === '/TrendingTV' ? 'active' : 'inactive'} style={{fontSize: "18px"}}>TV Show</Nav.Link>
+              <Nav.Link href="/" className={[location.pathname === '/' ? 'active' : 'inactive', 'navlink_style']}>Movie</Nav.Link>
+              <Nav.Link href="/TrendingTV" className={[location.pathname === '/TrendingTV' ? 'active' : 'inactive', 'navlink_style']}>TV Show</Nav.Link>
             </Nav>
-            {/* <Form className="d-flex search_wrap">
-              <Form.Control type="search" placeholder="Search.." className="search_box me-2" aria-label="Search" />
-              <Button variant="link" type="submit" className="btn_search">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"> 
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
-              </Button>
-            </Form> */}
             <Nav className="mb-2 mb-lg-0">
               {renderUsername()}
               {handleSigninSignout()}

@@ -36,12 +36,9 @@
   color: #e6283e;
 }
 
-.nav-current-page {
-  color: #e6283e;
-}
-
 .nav_signin {
   margin-left: 10px;
+  font-size: 18px;
 }
 
 .nav_signin:hover, .nav_username:hover {
@@ -51,4 +48,16 @@
 .nav_username {
   color: #e6283e;
   font-size: 18px;
+}
+
+.navlink_style {
+  font-size: 18px;
+}
+
+@media screen and (max-width: 991px) {
+  /* Navbar */
+  .nav_signin {
+    margin-left: 0;
+    margin-top: 5px;
+  }
 }

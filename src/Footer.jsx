@@ -1,41 +1,12 @@
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
-import './index.css'
 import './Footer.css'
+import './index.css'
 
 function Footer() {
   return (
     <Container fluid className="footer_area">
       <Row>
         <Col lg="4" sm="12">
-          <h3 className="feedback_title">Contact Us</h3>
-          <div className="mb-2">
-            <Form.Control type="text" placeholder="Name" className="form_height form_width"/>
-          </div>
-          <div className="mb-2">
-            <Form.Control type="email" placeholder="E-mail address" className="form_height form_width"/>
-          </div>
-          <div className="mb-2">
-            <Form.Control type="text" placeholder="Subject" className="form_height form_width"/>
-          </div>
-          <div className="mb-3">
-            <Form.Control as="textarea" rows={3} className="form_width" placeholder="Message"/>
-          </div>
-          <Button variant="danger" type="button" className="btn_send">Send</Button>
-        </Col>
-        <Col lg="1"></Col>
-        <Col lg="3" sm="12">
-          <h3 className="footer_title mt_30">Further Information</h3>
-          <ul type="none" className="further_info">
-            <li>Terms & Conditions</li>
-            <li>Privacy Policy</li>
-            <li>Subscription</li>
-            <li>Careers</li>
-            <li>FAQ</li>
-            <li>Help</li>
-          </ul>
-        </Col>
-        <Col lg="1"></Col>
-        <Col lg="3" sm="12">
           <h3 className="footer_title mt_10">Follow Us</h3>
           <div className="d-flex">
             <div className="socmed_icon d-flex justify-content-center align-items-center ms-0">
@@ -55,7 +26,19 @@ function Footer() {
             </div>
           </div>
         </Col>
-        <Col className="text-center">
+        <Col lg="3" sm="12">
+          <h3 className="footer_title mt_30">Further Information</h3>
+          <ul type="none" className="further_info">
+            <li>Terms & Conditions</li>
+            <li>Privacy Policy</li>
+            <li>Subscription</li>
+            <li>Careers</li>
+            <li>FAQ</li>
+            <li>Help</li>
+          </ul>
+        </Col>
+        <Col lg="5" sm="12" className="text-end">
+          <p className="mubii_title">Mubii.</p>
           <p className="copyright">Copyright &copy; 2023, Monica Aurellia</p>
         </Col>
       </Row>
