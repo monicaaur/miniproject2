@@ -83,7 +83,7 @@ function TVContent() {
             <><Col lg="2" md="4" sm="6" key={tv.id}>
               <Card className="card_border">
                 <a className='movie_modal' onClick={() => handleShow(tv.id)}>
-                  <Card.Img src={`https://www.themoviedb.org/t/p/original${tv.poster_path}`} className="card-img-top rounded-3" alt={tv.title}/>
+                  <Card.Img src={`https://www.themoviedb.org/t/p/original${tv.poster_path}`} className="card-img-top rounded-3" alt={tv.name}/>
                   <Card.Body>
                     <Card.Title>{tv.name}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Popularity: {tv.popularity}</Card.Subtitle>
