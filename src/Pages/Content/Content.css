@@ -164,6 +164,12 @@ img.poster {
   color: rgba(230, 40, 62, .85);
 }
 
+.keywords_style {
+  font-size: 25px;
+  padding-top: 10px;
+  color: white;
+}
+
 @media screen and (max-width: 425px) {
   /* Search Box */
   .search_wrap {
@@ -174,9 +180,19 @@ img.poster {
   .poster-title {
     height: 230px;
   }
+
+  .keywords_style {
+    font-size: 16px;
+    margin-top: -20px;
+  }
 }
 
 @media screen and (max-width: 375px) {
+  /* Content */
+  .content_wrapper{
+    padding: 43px 45px 60px;
+  }
+  
   /* Modal */
   .poster-title {
     height: 201px;
@@ -184,6 +200,11 @@ img.poster {
 }
 
 @media screen and (max-width: 320px) {
+  /* Content */
+  .content_wrapper{
+    padding: 30px 35px 50px;
+  }
+
   /* Modal */
   .poster-title {
     height: 170px;

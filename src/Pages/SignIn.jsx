@@ -9,7 +9,7 @@ import './SignIn.css'
 const generateRequestToken = async () => {
   const result = await Axios({
     method: "get",
-    url: "https://api.themoviedb.org/3/authentication/token/new?api_key=d16f4dafe652594029c33c9a44e3462f",
+    url: `${process.env.REACT_APP_BASEURL}/authentication/token/new?api_key=${process.env.REACT_APP_APIKEY}`,
   });
   return result.data.request_token
 }
@@ -30,7 +30,7 @@ function SignIn() {
       generateRequestToken().then((requestToken) => {
         Axios({
           method: "post",
-          url: "https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=d16f4dafe652594029c33c9a44e3462f",
+          url: `${process.env.REACT_APP_BASEURL}/authentication/token/validate_with_login?api_key=${process.env.REACT_APP_APIKEY}`,
           data: {
             request_token: requestToken,
             username: values.username,
@@ -41,7 +41,7 @@ function SignIn() {
           const validateRequestToken = response.data.request_token;
           Axios({
             method: "post",
-            url: "https://api.themoviedb.org/3/authentication/session/new?api_key=d16f4dafe652594029c33c9a44e3462f",
+            url: `${process.env.REACT_APP_BASEURL}/authentication/session/new?api_key=${process.env.REACT_APP_APIKEY}`,
             data: {
               request_token: validateRequestToken
             },

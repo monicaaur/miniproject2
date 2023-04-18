@@ -61,3 +61,17 @@
     margin-top: 5px;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .fixed-top{
+    padding-left: 43px;
+    padding-right: 35px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .fixed-top{
+    padding-left: 35px;
+    padding-right: 25px;
+  }
+}

@@ -8,13 +8,13 @@ function TrendingMovie() {
   const [movieData, setMovieData] = useState([])
 
   const getMovieData = async () => {
-    await Axios.get("https://api.themoviedb.org/3/trending/movie/week?api_key=d16f4dafe652594029c33c9a44e3462f")
+    await Axios.get(`${import.meta.env.VITE_BASEURL}/trending/movie/week?api_key=${import.meta.env.VITE_APIKEY}`)
 
     .then((trending) => {
       const requests = trending.data.results.slice(0, 5).map(async (movie) => {
-        const movieDetails = await Axios.get(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=d16f4dafe652594029c33c9a44e3462f`)
+        const movieDetails = await Axios.get(`${import.meta.env.VITE_BASEURL}/movie/${movie.id}?api_key=${import.meta.env.VITE_APIKEY}`)
               
-        const landscapePoster = Axios.get(`https://api.themoviedb.org/3/movie/${movie.id}/images?api_key=d16f4dafe652594029c33c9a44e3462f&include_image_language=en`)
+        const landscapePoster = Axios.get(`${import.meta.env.VITE_BASEURL}/movie/${movie.id}/images?api_key=${import.meta.env.VITE_APIKEY}&include_image_language=en`)
 
         return Promise.all([movieDetails, landscapePoster])
       })
@@ -39,7 +39,7 @@ function TrendingMovie() {
       <Carousel>
         {movieData.map((movie, i) => (
           <Carousel.Item interval={5000} key={i}>
-            <img className="d-block w-100" src={`https://www.themoviedb.org/t/p/original${movie.landscape.file_path}`} alt={movie.title}/>
+            <img className="d-block w-100" src={`${import.meta.env.VITE_BASEIMGURL}${movie.landscape.file_path}`} alt={movie.title}/>
           </Carousel.Item>
         ))}
       </Carousel>

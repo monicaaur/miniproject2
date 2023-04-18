@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Nav, Navbar, Button, Form } from 'react-bootstrap';
+import { Container, Nav, Navbar, } from 'react-bootstrap';
 import Axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './index.css'
@@ -14,7 +14,7 @@ function Navibar() {
     if(localStorage.getItem("sessionID")) {
       const getAccount = async () => {
         const response = await Axios.get(
-          `https://api.themoviedb.org/3/account?api_key=d16f4dafe652594029c33c9a44e3462f&session_id=${localStorage.getItem("sessionID")}`
+          `${import.meta.env.VITE_BASEURL}/account?api_key=${import.meta.env.VITE_APIKEY}&session_id=${localStorage.getItem("sessionID")}`
         );
         setUsername(response.data.username);
       };
@@ -27,7 +27,7 @@ function Navibar() {
       const handleSignOut = async () => {
         await Axios({
           method: "delete",
-          url:"https://api.themoviedb.org/3/authentication/session?api_key=d16f4dafe652594029c33c9a44e3462f",
+          url:`${import.meta.env.VITE_BASEURL}/authentication/session?api_key=${import.meta.env.VITE_APIKEY}`,
           data: {
             session_id: localStorage.getItem("sessionID")
           },

@@ -8,13 +8,13 @@ function TrendingTV() {
   const [tvData, setTVData] = useState([])
 
   const getTVData = async () => {
-    await Axios.get("https://api.themoviedb.org/3/trending/tv/week?api_key=d16f4dafe652594029c33c9a44e3462f")
+    await Axios.get(`${import.meta.env.VITE_BASEURL}/trending/tv/week?api_key=${import.meta.env.VITE_APIKEY}`)
 
     .then((trending) => {
       const requests = trending.data.results.slice(0, 5).map(async (tv) => {
-        const tvDetails = await Axios.get(`https://api.themoviedb.org/3/tv/${tv.id}?api_key=d16f4dafe652594029c33c9a44e3462f`)
+        const tvDetails = await Axios.get(`${import.meta.env.VITE_BASEURL}/tv/${tv.id}?api_key=${import.meta.env.VITE_APIKEY}`)
               
-        const landscapePoster = Axios.get(`https://api.themoviedb.org/3/tv/${tv.id}/images?api_key=d16f4dafe652594029c33c9a44e3462f&include_image_language=en`)
+        const landscapePoster = Axios.get(`${import.meta.env.VITE_BASEURL}/tv/${tv.id}/images?api_key=${import.meta.env.VITE_APIKEY}&include_image_language=en`)
 
         return Promise.all([tvDetails, landscapePoster])
       })
@@ -39,7 +39,7 @@ function TrendingTV() {
       <Carousel>
         {tvData.map((tv, i) => (
           <Carousel.Item interval={5000} key={i}>
-            <img className="d-block w-100" src={`https://www.themoviedb.org/t/p/original${tv.landscape.file_path}`} alt={tv.name}/>
+            <img className="d-block w-100" src={`${import.meta.env.VITE_BASEIMGURL}${tv.landscape.file_path}`} alt={tv.name}/>
           </Carousel.Item>
         ))}
       </Carousel>
