@@ -14,7 +14,7 @@ function Navibar() {
     if(localStorage.getItem("sessionID")) {
       const getAccount = async () => {
         const response = await Axios.get(
-          `${import.meta.env.VITE_BASEURL}/account?api_key=${import.meta.env.VITE_APIKEY}&session_id=${localStorage.getItem("sessionID")}`
+          `https://api.themoviedb.org/3/account?api_key=d16f4dafe652594029c33c9a44e3462f&session_id=${localStorage.getItem("sessionID")}`
         );
         setUsername(response.data.username);
       };
@@ -27,7 +27,7 @@ function Navibar() {
       const handleSignOut = async () => {
         await Axios({
           method: "delete",
-          url:`${import.meta.env.VITE_BASEURL}/authentication/session?api_key=${import.meta.env.VITE_APIKEY}`,
+          url:`https://api.themoviedb.org/3/authentication/session?api_key=d16f4dafe652594029c33c9a44e3462f`,
           data: {
             session_id: localStorage.getItem("sessionID")
           },
