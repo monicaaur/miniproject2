@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       <Outlet />
       <Footer />
     </>,
-    // errorElement: <Page404 />,
+    errorElement: <Page404 />,
     children: [
       {
         path: "/",
