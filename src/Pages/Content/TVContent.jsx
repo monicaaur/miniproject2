@@ -41,7 +41,7 @@ function TVContent() {
   return (
     <div>
       <Container fluid className="content_wrapper">
-        <Form className="d-flex search_wrap" onSubmit={handleSubmit} aria-labelledby="contained-modal-title-vcenter" centered>
+        <Form className="d-flex search_wrap" onSubmit={handleSubmit}>
           <Form.Control
           type="search" placeholder="Search.."
           className="search_box me-2"
@@ -73,7 +73,7 @@ function TVContent() {
                 </Card>
               </Col>
               
-              <Modal show={show === tv.id} onHide={() => handleClose()}>
+              <Modal show={show === tv.id} onHide={() => handleClose()} aria-labelledby="contained-modal-title-vcenter" centered>
                 <div class="close-wrap">
                   <CloseButton variant="white" aria-label="Close" onClick={() => handleClose()}/>
                 </div>
