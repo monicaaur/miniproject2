@@ -72,7 +72,7 @@ function MovieContent() {
                 </Card>
               </Col>
               
-              <Modal show={show === movie.id} onHide={() => handleClose()}>
+              <Modal show={show === movie.id} onHide={() => handleClose()} aria-labelledby="contained-modal-title-vcenter" centered>
                 <div class="close-wrap">
                   <CloseButton variant="white" aria-label="Close" onClick={() => handleClose()}/>
                 </div>

@@ -41,7 +41,7 @@ function TVContent() {
   return (
     <div>
       <Container fluid className="content_wrapper">
-        <Form className="d-flex search_wrap" onSubmit={handleSubmit}>
+        <Form className="d-flex search_wrap" onSubmit={handleSubmit} aria-labelledby="contained-modal-title-vcenter" centered>
           <Form.Control
           type="search" placeholder="Search.."
           className="search_box me-2"
