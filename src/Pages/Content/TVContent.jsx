@@ -57,7 +57,7 @@ function TVContent() {
 
         {tvData.length > 0 ? (
         <div>
-          <h2 className="content_title">Trending TV Show</h2>
+          <h2 className="content_title">Trending TV Shows</h2>
 
           <Row>
             {tvData.map((tv, i) => ( 
