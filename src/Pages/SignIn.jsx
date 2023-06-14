@@ -61,42 +61,44 @@ function SignIn() {
   }, []);
 
   return (
-    <Container fluid className='signin_wrapper'>
-      <h2 className="signin-title">Welcome!</h2>
-      <Form onSubmit={formik.handleSubmit}>
-        <div class="mb-2">
-          <Form.Label className="label_style" htmlFor="username">Username</Form.Label>
-          <Form.Control 
-            id="username"
-            name="username"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.username}
-            className="form_style"
-            placeholder="Enter username"
-          />
-          {formik.touched.username && formik.errors.username ? (
-            <div style={{ color: '#e6283e'}}>{formik.errors.username}</div>
-          ) : null}
-        </div>
-        <div class="mb-2 mt-3">
-          <Form.Label className="label_style" htmlFor="password">Password</Form.Label>
-          <Form.Control 
-            id="password"
-            name="password"
-            type="password"
-            onChange={formik.handleChange}
-            value={formik.values.password}
-            className="form_style"
-            placeholder="Enter password"
-          />
-          {formik.touched.password && formik.errors.password ? (
-            <div style={{ color: '#e6283e'}}>{formik.errors.password}</div>
-          ) : null}
-        </div>
-        <Button type="submit" variant="danger" className='btn_signin'>Sign In</Button>
-      </Form>
-    </Container>
+    <div className="signin_box">
+      <Container fluid className='signin_wrapper'>
+        <h2 className="signin-title">Welcome!</h2>
+        <Form onSubmit={formik.handleSubmit}>
+          <div class="mb-2">
+            <Form.Label className="label_style" htmlFor="username">Username</Form.Label>
+            <Form.Control 
+              id="username"
+              name="username"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.username}
+              className="form_style"
+              placeholder="Enter username"
+            />
+            {formik.touched.username && formik.errors.username ? (
+              <div style={{ color: '#e6283e'}}>{formik.errors.username}</div>
+            ) : null}
+          </div>
+          <div class="mb-2 mt-3">
+            <Form.Label className="label_style" htmlFor="password">Password</Form.Label>
+            <Form.Control 
+              id="password"
+              name="password"
+              type="password"
+              onChange={formik.handleChange}
+              value={formik.values.password}
+              className="form_style"
+              placeholder="Enter password"
+            />
+            {formik.touched.password && formik.errors.password ? (
+              <div style={{ color: '#e6283e'}}>{formik.errors.password}</div>
+            ) : null}
+          </div>
+          <Button type="submit" variant="danger" className='btn_signin'>Sign In</Button>
+        </Form>
+      </Container>
+    </div>
   )
 }
 

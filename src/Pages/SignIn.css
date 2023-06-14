@@ -1,7 +1,14 @@
-/* Sign In */
+.signin_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  background-color: #0c0c0c;
+}
+
 .signin_wrapper {
   background-color: #0c0c0c;
-  padding: 110px 50px 70px;
+  padding: 0 50px;
 }
 
 .signin-title {
